@@ -32,16 +32,6 @@ const Content = (props) => {
   )
 }
 
-// Part component unused
-const Part = (props) => {
-  
-  return (
-    <>
-    <p>{props.msg} {props.nro}</p>
-    </>
-  )
-}
-
 
 const App = () => {
   const course = {
@@ -75,4 +65,4 @@ const App = () => {
 
 ReactDOM.render(<App />, document.getElementById('root'))
 
-// Fin!
+// Fin! Nothing broke!
