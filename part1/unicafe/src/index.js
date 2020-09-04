@@ -11,6 +11,7 @@ const Statistics = (props) => {
  )
 }
 
+
 const App = () => {
  
 const [feedbackCounter, setReview] = useState({
@@ -53,6 +54,29 @@ const [feedbackCounter, setReview] = useState({
     }
     setReview(newReview)
   }
+  
+  const History = () => {
+    if (feedbackCounter.all === 0) {
+      return (
+        <div>
+          No feedback given
+        </div>
+      )
+    }
+    return (
+      <div>
+        <p>
+          <Statistics msg="good " rev={feedbackCounter.good }/> 
+          <Statistics msg="neutral " rev={feedbackCounter.neutral}/> 
+          <Statistics msg="bad " rev={feedbackCounter.bad}/> 
+          <Statistics msg="all " rev={feedbackCounter.all}/>   
+          <Statistics msg="average " rev={feedbackCounter.score / feedbackCounter.all}/>    
+          <Statistics msg="positive " rev={feedbackCounter.good / feedbackCounter.all * 100} unit=" %"/>  
+        </p>
+      </div>
+    )
+  }
+  
 console.log("Score: ", feedbackCounter.score)
 console.log("Count: ", feedbackCounter.all)
   return (
@@ -64,15 +88,8 @@ console.log("Count: ", feedbackCounter.all)
       <button onClick={handleBad}>bad</button>
       
       <h1>statistics</h1>
+      <History />
       
-      <p>
-        <Statistics msg="good " rev={feedbackCounter.good }/> 
-        <Statistics msg="neutral " rev={feedbackCounter.neutral}/> 
-        <Statistics msg="bad " rev={feedbackCounter.bad}/> 
-        <Statistics msg="all " rev={feedbackCounter.all}/>   
-        <Statistics msg="average " rev={feedbackCounter.score / feedbackCounter.all}/>    
-        <Statistics msg="positive " rev={feedbackCounter.good / feedbackCounter.all * 100} unit=" %"/>  
-      </p>
            
     </div>
   )
