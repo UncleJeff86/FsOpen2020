@@ -2,12 +2,17 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 
-const App = (props) => {
-  // save clicks of each button to own state
-  //const [good, setGood] = useState(0)
-  //const [neutral, setNeutral] = useState(0)
-  //const [bad, setBad] = useState(0)
+const Statistics = (props) => {
 
+ return (
+    <>
+       {props.msg}{props.rev}{props.unit}<br/>
+    </>
+ )
+}
+
+const App = () => {
+ 
 const [feedbackCounter, setReview] = useState({
   good: 0, 
   neutral: 0, 
@@ -15,8 +20,6 @@ const [feedbackCounter, setReview] = useState({
   all: 0,
   score: 0
 })
-
-  
 
   const handleGood = () => {
     console.log("Good review!")
@@ -63,12 +66,12 @@ console.log("Count: ", feedbackCounter.all)
       <h1>statistics</h1>
       
       <p>
-      good {feedbackCounter.good}<br/>
-      neutral {feedbackCounter.neutral}<br/>
-      bad {feedbackCounter.bad}<br/>
-      all {feedbackCounter.all}<br/>
-      average {feedbackCounter.score / feedbackCounter.all}<br/>
-      positive {feedbackCounter.good / feedbackCounter.all * 100} %<br/>      
+        <Statistics msg="good " rev={feedbackCounter.good }/> 
+        <Statistics msg="neutral " rev={feedbackCounter.neutral}/> 
+        <Statistics msg="bad " rev={feedbackCounter.bad}/> 
+        <Statistics msg="all " rev={feedbackCounter.all}/>   
+        <Statistics msg="average " rev={feedbackCounter.score / feedbackCounter.all}/>    
+        <Statistics msg="positive " rev={feedbackCounter.good / feedbackCounter.all * 100} unit=" %"/>  
       </p>
            
     </div>
