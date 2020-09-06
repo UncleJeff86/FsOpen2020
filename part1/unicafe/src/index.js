@@ -16,20 +16,23 @@ import ReactDOM from 'react-dom'
 // DESTRUCTURED version below
 const Button = ({handle, text}) => <><button onClick={handle}>{text}</button></>
 
-const OneStat = ({text, rate, unit}) => <>{text} {rate} {unit}<br/></>
+const OneStat = ({text, rate, unit}) => <><tr><td>{text}</td><td>{rate}</td><td>{unit}</td></tr></>
    
 const Statistics = (props) => {
     
  return (
     <>
-    <p>
+    <table>
+      <tbody>
        <OneStat text="good " rate={props.fbc.good}/>
        <OneStat text="neutral " rate={props.fbc.neutral}/>
        <OneStat text="bad " rate={props.fbc.bad}/>
        <OneStat text="all " rate={props.fbc.all}/>
        <OneStat text="average " rate={props.fbc.score / props.fbc.all}/>
        <OneStat text="positive" rate={props.fbc.good / props.fbc.all} unit="%"/>
-    </p>
+      </tbody>
+    </table>
+      
     </>
  )
 }
