@@ -2,37 +2,15 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 
-
-
-// ...obsolete version...
-//   const OneStat = ({props}) => {
-    
-//   return (
-//    <>
-//     {props.text} {props.rate} {props.unit}<br/>
-//    </>
-//  )
-// }
-// DESTRUCTURED version below
-const Button = ({handle, text}) => <><button onClick={handle}>{text}</button></>
-
-const OneStat = ({text, rate, unit}) => <>{text} {rate} {unit}<br/></>
-   
 const Statistics = (props) => {
-    
+
  return (
     <>
-    <p>
-       <OneStat text="good " rate={props.fbc.good}/>
-       <OneStat text="neutral " rate={props.fbc.neutral}/>
-       <OneStat text="bad " rate={props.fbc.bad}/>
-       <OneStat text="all " rate={props.fbc.all}/>
-       <OneStat text="average " rate={props.fbc.score / props.fbc.all}/>
-       <OneStat text="positive" rate={props.fbc.good / props.fbc.all} unit="%"/>
-    </p>
+       {props.msg}{props.rev}{props.unit}<br/>
     </>
  )
 }
+
 
 const App = () => {
  
@@ -87,7 +65,14 @@ const [feedbackCounter, setReview] = useState({
     }
     return (
       <div>
-       <Statistics fbc={feedbackCounter}/>
+        <p>
+          <Statistics msg="good " rev={feedbackCounter.good }/> 
+          <Statistics msg="neutral " rev={feedbackCounter.neutral}/> 
+          <Statistics msg="bad " rev={feedbackCounter.bad}/> 
+          <Statistics msg="all " rev={feedbackCounter.all}/>   
+          <Statistics msg="average " rev={feedbackCounter.score / feedbackCounter.all}/>    
+          <Statistics msg="positive " rev={feedbackCounter.good / feedbackCounter.all * 100} unit=" %"/>  
+        </p>
       </div>
     )
   }
@@ -98,10 +83,10 @@ console.log("Count: ", feedbackCounter.all)
     <div>
       <h1>give feedback</h1>
       
-      <Button handle={handleGood} text="good1"/>
-      <Button handle={handleNeutral} text="neutral1"/>
-      <Button handle={handleBad} text="bad1"/>
-
+      <button onClick={handleGood}>good</button>
+      <button onClick={handleNeutral}>neutral</button>
+      <button onClick={handleBad}>bad</button>
+      
       <h1>statistics</h1>
       <History />
       
